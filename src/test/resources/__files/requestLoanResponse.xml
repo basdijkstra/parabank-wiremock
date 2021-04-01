@@ -7,7 +7,7 @@
                 xmlns="http://service.parabank.parasoft.com/">
             <loanResponse>
                 <loanProviderName
-                        xmlns="">Sydney Testers Meetup Loan Processor</loanProviderName>
+                        xmlns="">Taqelah Webinar Loan Processor</loanProviderName>
                 <approved xmlns="">true</approved>
             </loanResponse>
         </requestLoanResponse>

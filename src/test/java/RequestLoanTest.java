@@ -33,7 +33,7 @@ public class RequestLoanTest {
                 .requestLoanFor("10000", "100", "12345");
 
         Assert.assertEquals(
-                "Sydney Testers Meetup Loan Processor",
+                "Taqelah Webinar Loan Processor",
                 new RequestLoanResultPage(driver).getLoanProviderName()
         );
 
