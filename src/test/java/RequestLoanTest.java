@@ -1,17 +1,20 @@
-import com.github.tomakehurst.wiremock.junit.WireMockRule;
-import org.junit.*;
+import com.github.tomakehurst.wiremock.junit5.WireMockTest;
+import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import pages.*;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+
+@WireMockTest(httpPort = 9876)
 public class RequestLoanTest {
 
     private WebDriver driver;
 
-    @Rule
-    public WireMockRule wireMockRule = new WireMockRule(9876);
-
-    @Before
+    @BeforeEach
     public void setupDriverAndLogInToParaBank() {
 
         System.setProperty("webdriver.chrome.driver", "src/test/resources/drivers/chromedriver.exe");
@@ -32,12 +35,12 @@ public class RequestLoanTest {
         new RequestLoanPage(driver)
                 .requestLoanFor("10000", "100", "12345");
 
-        Assert.assertEquals(
-                "Taqelah Webinar Loan Processor",
+        assertEquals(
+                "Lunch and Learn Loan Processor",
                 new RequestLoanResultPage(driver).getLoanProviderName()
         );
 
-        Assert.assertEquals(
+        assertEquals(
                 "Approved",
                 new RequestLoanResultPage(driver).getLoanApplicationResult()
         );
@@ -52,12 +55,12 @@ public class RequestLoanTest {
         new RequestLoanPage(driver)
                 .requestLoanFor("9000", "100", "12345");
 
-        Assert.assertEquals(
+        assertEquals(
                 "Sorry that took me so long...",
                 new RequestLoanResultPage(driver).getLoanProviderName()
         );
 
-        Assert.assertEquals(
+        assertEquals(
                 "Approved",
                 new RequestLoanResultPage(driver).getLoanApplicationResult()
         );
@@ -72,12 +75,12 @@ public class RequestLoanTest {
         new RequestLoanPage(driver)
                 .requestLoanFor("8000", "100", "12345");
 
-        Assert.assertEquals(
+        assertEquals(
                 "Computer says NO",
                 new RequestLoanResultPage(driver).getLoanProviderName()
         );
 
-        Assert.assertEquals(
+        assertEquals(
                 "Denied",
                 new RequestLoanResultPage(driver).getLoanApplicationResult()
         );
@@ -92,12 +95,12 @@ public class RequestLoanTest {
         new RequestLoanPage(driver)
                 .requestLoanFor("7000", "100", "12345");
 
-        Assert.assertTrue(
+        assertTrue(
                 new RequestLoanResultPage(driver).internalErrorMessageIsVisible()
         );
     }
 
-    @After
+    @AfterEach
     public void closeBrowser() {
 
         driver.quit();

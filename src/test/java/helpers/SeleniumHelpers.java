@@ -1,12 +1,13 @@
 package helpers;
 
-import org.junit.Assert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.TimeoutException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
+
+import static org.junit.jupiter.api.Assertions.fail;
 
 public class SeleniumHelpers {
 
@@ -23,7 +24,7 @@ public class SeleniumHelpers {
             driver.findElement(by).click();
         }
         catch (TimeoutException te) {
-            Assert.fail(String.format("Exception in click(): %s", te.getMessage()));
+            fail(String.format("Exception in click(): %s", te.getMessage()));
         }
     }
 
@@ -34,7 +35,7 @@ public class SeleniumHelpers {
             driver.findElement(by).sendKeys(textToType);
         }
         catch (TimeoutException te) {
-            Assert.fail(String.format("Exception in sendKeys(): %s", te.getMessage()));
+            fail(String.format("Exception in sendKeys(): %s", te.getMessage()));
         }
     }
 
@@ -45,7 +46,7 @@ public class SeleniumHelpers {
             new Select(driver.findElement(by)).selectByVisibleText(valueToSelect);
         }
         catch (TimeoutException te) {
-            Assert.fail(String.format("Exception in select(): %s", by.toString()));
+            fail(String.format("Exception in select(): %s", by.toString()));
         }
     }
 
@@ -57,7 +58,7 @@ public class SeleniumHelpers {
             new Select(driver.findElement(by)).selectByVisibleText(valueToSelect);
         }
         catch (TimeoutException te) {
-            Assert.fail(String.format("Exception in selectWithWait(): %s", te.getMessage()));
+            fail(String.format("Exception in selectWithWait(): %s", te.getMessage()));
         }
     }
 
