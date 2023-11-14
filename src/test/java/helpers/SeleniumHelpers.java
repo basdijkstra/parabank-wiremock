@@ -7,20 +7,24 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
+import java.time.Duration;
+
 import static org.junit.jupiter.api.Assertions.fail;
 
 public class SeleniumHelpers {
 
     private WebDriver driver;
+    private WebDriverWait wait;
 
     public SeleniumHelpers(WebDriver driver) {
         this.driver = driver;
+        this.wait = new WebDriverWait(this.driver, Duration.ofSeconds(10));
     }
 
     public void click(By by) {
 
         try {
-            new WebDriverWait(driver, 10).until(ExpectedConditions.elementToBeClickable(by));
+            wait.until(ExpectedConditions.elementToBeClickable(by));
             driver.findElement(by).click();
         }
         catch (TimeoutException te) {
@@ -31,7 +35,7 @@ public class SeleniumHelpers {
     public void sendKeys(By by, String textToType) {
 
         try {
-            new WebDriverWait(driver, 10).until(ExpectedConditions.elementToBeClickable(by));
+            wait.until(ExpectedConditions.elementToBeClickable(by));
             driver.findElement(by).sendKeys(textToType);
         }
         catch (TimeoutException te) {
@@ -42,7 +46,7 @@ public class SeleniumHelpers {
     public void select(By by, String valueToSelect) {
 
         try {
-            new WebDriverWait(driver, 10).until(ExpectedConditions.elementToBeClickable(by));
+            wait.until(ExpectedConditions.elementToBeClickable(by));
             new Select(driver.findElement(by)).selectByVisibleText(valueToSelect);
         }
         catch (TimeoutException te) {
@@ -53,8 +57,7 @@ public class SeleniumHelpers {
     public void selectWithWait(By by, String valueToSelect) {
 
         try {
-            new WebDriverWait(driver, 10).
-                    until(ExpectedConditions.presenceOfNestedElementLocatedBy(by, By.xpath("//option[text()='"+ valueToSelect +"']")));
+            wait.until(ExpectedConditions.presenceOfNestedElementLocatedBy(by, By.xpath("//option[text()='"+ valueToSelect +"']")));
             new Select(driver.findElement(by)).selectByVisibleText(valueToSelect);
         }
         catch (TimeoutException te) {
@@ -65,7 +68,7 @@ public class SeleniumHelpers {
     public boolean isDisplayed(By by) {
 
         try {
-            new WebDriverWait(driver, 10).until(ExpectedConditions.visibilityOfElementLocated(by));
+            wait.until(ExpectedConditions.visibilityOfElementLocated(by));
             return true;
         }
         catch (TimeoutException te) {
@@ -76,7 +79,7 @@ public class SeleniumHelpers {
     public String getElementText(By by) {
 
         try {
-            new WebDriverWait(driver, 10).until(ExpectedConditions.visibilityOfElementLocated(by));
+            wait.until(ExpectedConditions.visibilityOfElementLocated(by));
             return driver.findElement(by).getText();
         }
         catch (TimeoutException te) {
