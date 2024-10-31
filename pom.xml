@@ -8,18 +8,18 @@
     <version>1.0-SNAPSHOT</version>
     <description>Demo stubs and tests for my talk on using WireMock as a service virtualization tool</description>
     <properties>
-        <maven.compiler.source>17</maven.compiler.source>
-        <maven.compiler.target>17</maven.compiler.target>
-        <wiremock.version>2.35.1</wiremock.version>
+        <maven.compiler.source>21</maven.compiler.source>
+        <maven.compiler.target>21</maven.compiler.target>
+        <wiremock.version>3.9.2</wiremock.version>
         <junit.version>5.10.1</junit.version>
-        <selenium.version>4.15.0</selenium.version>
+        <selenium.version>4.26.0</selenium.version>
         <slf4j.version>1.7.33</slf4j.version>
-        <maven.surefire.plugin.version>3.0.0-M5</maven.surefire.plugin.version>
+        <maven.surefire.plugin.version>3.5.1</maven.surefire.plugin.version>
     </properties>
     <dependencies>
         <dependency>
-            <groupId>com.github.tomakehurst</groupId>
-            <artifactId>wiremock-jre8</artifactId>
+            <groupId>org.wiremock</groupId>
+            <artifactId>wiremock</artifactId>
             <version>${wiremock.version}</version>
             <scope>test</scope>
         </dependency>
