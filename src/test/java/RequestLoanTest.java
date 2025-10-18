@@ -34,7 +34,7 @@ public class RequestLoanTest {
                 .requestLoanFor("10000", "100", "12345");
 
         assertEquals(
-                "Lunch and Learn Loan Processor",
+                "Generous Loan Processor",
                 new RequestLoanResultPage(driver).getLoanProviderName()
         );
 
